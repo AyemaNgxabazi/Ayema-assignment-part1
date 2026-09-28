@@ -46,11 +46,12 @@ public class Login {
     }
 
     /**
-     * Check password complexity rules.
-     * Rules: 8+ chars, uppercase, digit, special character.
-     * 
-     * @return boolean result
-     */
+    * Checks if the password meets the required complexity rules.
+    * The password must contain at least eight characters,
+    * one uppercase letter, one number and one special character.
+    *
+    * @return true if the password meets the requirements, otherwise false
+    */
     public boolean checkPasswordComplexity() {
         boolean upperCaseFound = false;
         boolean digitFound = false;
