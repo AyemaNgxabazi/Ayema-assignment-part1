@@ -32,12 +32,13 @@ public class Login {
 
   
 }
-    /**
-     * Check username formatting rules.
-     * Rule: Must contain underscore and max 5 characters.
-     * 
-     * @return boolean result
-     */
+  /**
+ * Checks if the username is correctly formatted.
+ * The username must contain an underscore and must not
+ * be more than five characters long.
+ *
+ * @return true if the username is valid, otherwise false
+ */
     public boolean checkUserName() {
         boolean underscoreExists = username.contains("_");
         boolean lengthValid = username.length() <= 5;
