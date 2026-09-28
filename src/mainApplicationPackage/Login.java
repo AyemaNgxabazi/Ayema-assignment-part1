@@ -119,12 +119,14 @@ public boolean checkCellPhoneNumber() {
     }
 
     /**
-     * Get login status message.
-     * 
-     * @param enteredUser Username entered
-     * @param enteredPass Password entered
-     * @return String message
-     */
+    * Returns a message showing whether the user logged in successfully.
+    * If the login details are correct, the user is welcomed by name.
+    * Otherwise, an error message is displayed.
+    *
+    * @param enteredUser username entered during login
+    * @param enteredPass password entered during login
+    * @return the appropriate login status message
+    */
     public String returnLoginStatus(String enteredUser, String enteredPass) {
         if (loginUser(enteredUser, enteredPass)) {
             return "Welcome " + firstName + ", " + lastName + " it is great to see you again.";
