@@ -73,15 +73,18 @@ public class Login {
     }
 
    /**
-   * Checks if the cell phone number is correctly formatted.
-   * The number must contain the South African international code (+27)
-   * followed by 9 digits.
-   *
-   * Regular expression used to validate the cell phone number.
-   *
-   * @return true if the cell phone number is correctly formatted,
-   * otherwise returns false
-   */
+ * Checks if the cell phone number is correctly formatted.
+ * The number must contain the South African international code (+27)
+ * followed by 9 digits.
+ *
+ * Regular expressions are used to validate the format of the number.
+ * Reference: Oracle (2026). Java String.matches(String regex) documentation.
+ * Available at: https://docs.oracle.com/en/java/javase/26/docs/api/java.base/java/lang/String.html
+ * Accessed: 28 September 2026.
+ *
+ * @return true if the cell phone number is correctly formatted,
+ * otherwise false
+ */
 public boolean checkCellPhoneNumber() {
     return cellNumber.matches("^\\+27\\d{9}$");
 }
