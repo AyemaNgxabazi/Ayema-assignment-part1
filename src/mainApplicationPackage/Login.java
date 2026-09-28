@@ -107,12 +107,13 @@ public boolean checkCellPhoneNumber() {
     }
 
     /**
-     * Verify login credentials.
-     * 
-     * @param enteredUser Username entered
-     * @param enteredPass Password entered
-     * @return boolean result
-     */
+   * Checks whether the entered login details match
+   * the username and password used during registration.
+   *
+   * @param enteredUser username entered during login
+   * @param enteredPass password entered during login
+   * @return true if the login details are correct, otherwise false
+   */
     public boolean loginUser(String enteredUser, String enteredPass) {
         return username.equals(enteredUser) && password.equals(enteredPass);
     }
