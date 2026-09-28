@@ -73,24 +73,26 @@ public class Login {
     }
 
    /**
- * Checks if the cell phone number is correctly formatted.
- * The number must contain the South African international code (+27)
- * followed by 9 digits.
- *
- * Regular expression used to validate the cell phone number.
- *
- * @return true if the cell phone number is correctly formatted,
- * otherwise returns false
- */
+   * Checks if the cell phone number is correctly formatted.
+   * The number must contain the South African international code (+27)
+   * followed by 9 digits.
+   *
+   * Regular expression used to validate the cell phone number.
+   *
+   * @return true if the cell phone number is correctly formatted,
+   * otherwise returns false
+   */
 public boolean checkCellPhoneNumber() {
     return cellNumber.matches("^\\+27\\d{9}$");
 }
 
     /**
-     * Register user with validation.
-     * 
-     * @return String message
-     */
+    * Registers the user after validating the username,
+    * password and cell phone number.
+    *
+    * @return a message showing whether registration was successful
+    * or which information was incorrectly formatted
+    */
     public String registerUser() {
         if (!checkUserName()) {
             return "Username is not correctly formatted, please ensure that your username contains an underscore and is no more than five characters in length.";
