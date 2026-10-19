@@ -10,17 +10,17 @@ public class Login {
     private String cellNumber;
 
     public Login(String firstName, String lastName,
-             String username, String password,
-             String cellNumber) {
+                 String username, String password,
+                 String cellNumber) {
 
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.username = username;
-    this.password = password;
-    this.cellNumber = cellNumber;
-}
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.password = password;
+        this.cellNumber = cellNumber;
+    }
 
-    // Check whether the username is correctly formatted
+    // Check username format
     public boolean checkUserName() {
         return username != null
                 && username.contains("_")
@@ -29,6 +29,7 @@ public class Login {
 
     // Check password complexity
     public boolean checkPasswordComplexity() {
+
         if (password == null || password.length() < 8) {
             return false;
         }
@@ -56,31 +57,43 @@ public class Login {
         return hasCapital && hasNumber && hasSpecial;
     }
 
-    // Check South African cell phone number
-   public boolean checkCellPhoneNumber() {
-    return cellNumber != null
-            && cellNumber.trim().matches("^\\+27\\d{9}$");
-}
+    // Check phone number format
+    public boolean checkCellPhoneNumber() {
+
+        if (cellNumber == null) {
+            return false;
+        }
+
+        String number = cellNumber.trim();
+
+        return number.matches("^\\+27[0-9]{9}$")
+                || number.matches("^0[0-9]{9}$");
+    }
+
+    // Registration requires an international phone number
+    private boolean cellNumberIsInternationalAndValid() {
+        return cellNumber != null
+                && cellNumber.trim().matches("^\\+27[0-9]{9}$");
+    }
+
     // Register the user
     public String registerUser() {
 
         if (!checkUserName()) {
-            return "Username is not correctly formatted. "
-                    + "Please ensure that your username contains "
-                    + "an underscore and is no more than five "
-                    + "characters long.";
+            return "Username is not correctly formatted, please ensure "
+                    + "that your username contains an underscore and is "
+                    + "no more than five characters in length.";
         }
 
         if (!checkPasswordComplexity()) {
-            return "Password is not correctly formatted. "
-                    + "Please ensure that it contains at least "
-                    + "eight characters, a capital letter, "
-                    + "a number, and a special character.";
+            return "Password is not correctly formatted, please ensure "
+                    + "that the password contains at least eight characters, "
+                    + "a capital letter, a number, and a special character.";
         }
 
-        if (!checkCellPhoneNumber()) {
-            return "Cell phone number incorrectly formatted "
-                    + "or does not contain the international code.";
+        if (!cellNumberIsInternationalAndValid()) {
+            return "Cell phone number incorrectly formatted or does not "
+                    + "contain international code.";
         }
 
         return "Username successfully captured.\n"
@@ -90,7 +103,9 @@ public class Login {
 
     // Check login details
     public boolean loginUser(String enteredUser, String enteredPass) {
-        return username.equals(enteredUser)
+        return username != null
+                && password != null
+                && username.equals(enteredUser)
                 && password.equals(enteredPass);
     }
 
