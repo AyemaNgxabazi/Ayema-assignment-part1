@@ -36,12 +36,11 @@ public class Main {
                 cellNumber
         );
 
-        System.out.println(app.registerUser());
+        String registrationStatus = app.registerUser();
+System.out.println(registrationStatus);
 
-        // Continue only if registration details are valid
-        if (app.checkUserName()
-                && app.checkPasswordComplexity()
-                && app.checkCellPhoneNumber()) {
+// Continue only if registration was successful
+if (registrationStatus.startsWith("Username successfully captured.")) {
 
             // LOGIN
             System.out.println();
