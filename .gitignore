@@ -1,0 +1,9 @@
+# NetBeans private settings
+/nbproject/private/
+
+# Compiled files
+/build/
+/dist/
+
+# Generated JSON message data
+/messages.json
