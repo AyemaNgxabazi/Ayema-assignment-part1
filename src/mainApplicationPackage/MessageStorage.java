@@ -54,4 +54,23 @@ public class MessageStorage {
             return new ArrayList<>();
         }
     }
+public static String deleteMessageByHash(String hash) {
+    List<Message> messages = readMessages();
+
+    boolean removed = messages.removeIf(
+        message -> message.getMessageHash().equalsIgnoreCase(hash)
+    );
+
+    if (!removed) {
+        return "Message hash not found.";
+    }
+
+    try (FileWriter writer = new FileWriter(FILE_NAME)) {
+        gson.toJson(messages, writer);
+        return "Message successfully deleted.";
+    } catch (IOException e) {
+        return "Error deleting message: " + e.getMessage();
+    }
+}
+
 }

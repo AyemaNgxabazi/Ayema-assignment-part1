@@ -9,29 +9,38 @@ public class Message {
     private String messageID;
     private int messageNumber;
     private String recipient;
+    private String sender;
     private String messageText;
     private String messageHash;
     private String messageStatus;
 
     private static int totalMessagesSent = 0;
 
+    // Constructor for normal application use
     public Message(int messageNumber, String recipient,
                    String messageText) {
+
+        this(messageNumber, recipient, messageText,
+                String.valueOf(ThreadLocalRandom.current()
+                        .nextLong(1_000_000_000L,
+                                  10_000_000_000L)));
+    }
+
+    // Constructor for testing a specific message ID
+    public Message(int messageNumber, String recipient,
+                   String messageText, String messageID) {
 
         this.messageNumber = messageNumber;
         this.recipient = recipient;
         this.messageText = messageText;
-
-        long randomID = ThreadLocalRandom.current()
-                .nextLong(1_000_000_000L, 10_000_000_000L);
-
-        this.messageID = String.valueOf(randomID);
+        this.messageID = messageID;
         this.messageStatus = "Pending";
         this.messageHash = createMessageHash();
     }
 
     public boolean checkMessageID() {
-        return messageID != null && messageID.length() <= 10;
+        return messageID != null
+                && messageID.matches("[0-9]{1,10}");
     }
 
     public String checkRecipientCell() {
@@ -68,7 +77,8 @@ public class Message {
         String firstWord = "";
         String lastWord = "";
 
-        if (messageText != null && !messageText.trim().isEmpty()) {
+        if (messageText != null
+                && !messageText.trim().isEmpty()) {
 
             String[] words = messageText.trim().split("\\s+");
 
@@ -99,6 +109,7 @@ public class Message {
                 if (!"Sent".equals(messageStatus)) {
                     totalMessagesSent++;
                 }
+
                 messageStatus = "Sent";
                 return "Message successfully sent.";
 
@@ -152,4 +163,13 @@ public class Message {
     public String getMessageStatus() {
         return messageStatus;
     }
+    
+public String getSender() {
+    return sender;
+}
+
+public void setSender(String sender) {
+    this.sender = sender;
+}
+
 }
