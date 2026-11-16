@@ -1,14 +1,7 @@
-# How to Run QuickChat
+## Troubleshooting
 
-1. Open Apache NetBeans.
-2. Select File > Open Project.
-3. Open the QuickChat project folder.
-4. Build the project using F11.
-5. Run the main Java application.
-6. Register an account and log in.
-7. Use the menu to send, store or disregard messages.
-8. Open Stored Messages to search, delete and display reports.
+During development, I experienced a problem where NetBeans could not delete some generated build folders during Clean and Build.
 
-## Testing
+I resolved this by moving my project from OneDrive to a local folder under `C:\JavaProjects` and using the normal Build command.
 
-Right-click the project in NetBeans and select Test. The latest local test run completed successfully with 24 tests passed.
+I also tested the application using JUnit. All 24 tests passed with no failures or errors.
